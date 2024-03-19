@@ -1,0 +1,11 @@
+
+stages:
+    - build
+    - deploy
+    - checklog
+build:
+    stage: build
+    script: 
+       - mvn install -DskipTests=true
+    tags:
+        - dev-server   
