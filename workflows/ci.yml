@@ -33,5 +33,19 @@ deploy:
         run: |
           sudo cp target/shoe-ShoppingCart-0.0.1-SNAPSHOT.jar /datas/shoeshop/
           sudo chown -R shoeshop. /datas/shoeshop
+          deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        run: |
+          sudo cp target/shoe-ShoppingCart-0.0.1-SNAPSHOT.jar /datas/shoeshop/
+          sudo chown -R shoeshop. /datas/shoeshop
+          sudo su shoeshop -c "kill -9 $(ps -ef| grep shoe-ShoppingCart-0.0.1-SNAPSHOT.jar | grep -v grep | awk '{print $2}')"
+          sudo su shoeshop -c "cd /datas/shoeshop/; nohup java -jar shoe-ShoppingCart-0.0.1-SNAPSHOT.jar 2>&1 &"
+
           sudo su shoeshop -c "cd /datas/shoeshop/; nohup java -jar shoe-ShoppingCart-0.0.1-SNAPSHOT.jar 2>&1 &"
 
