@@ -1,8 +1,5 @@
 https://roadmap.sh/projects/basic-dockerfile
-
-
 # Shoe-Shopping-Cart
-
 #TEST PIPELINE 
 
 Shoe Shopping Cart built with SpringBoot, JPA, MySQL , Spring Security, Hibernate and Thymeleaf
